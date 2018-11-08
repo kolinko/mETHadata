@@ -1,0 +1,41 @@
+{
+  "name": "RICKS",
+  "ens_address": "",
+  "website": "https://picklericks.wixsite.com/picklewix",
+  "logo": {
+    "src": "",
+    "width": "",
+    "height": "",
+    "ipfs_hash": ""
+  },
+  "support": {
+    "email": "",
+    "url": ""
+  },
+  "social": {
+    "blog": "",
+    "chat": "",
+    "facebook": "",
+    "forum": "",
+    "github": "",
+    "gitter": "",
+    "instagram": "",
+    "linkedin": "",
+    "reddit": "",
+    "slack": "",
+    "telegram": "",
+    "twitter": "",
+    "youtube": ""
+  },
+  "ubq": [
+    {
+      "name": "RICKS",
+      "address": "0x5e1715bB79805Bd672729760B3f7F34D6f485098",
+      "erc20": {
+        "symbol": "RICKS",
+        "decimals": 8,
+        "name": "RICKS"
+      }
+    }
+  ]
+}

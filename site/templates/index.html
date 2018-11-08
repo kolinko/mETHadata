@@ -1,0 +1,259 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Open Source database for contract metadata">
+
+    <title>Methadata - Open Source database for contract metadata</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="pricing.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <style>
+      .logo {
+          width:50px;
+
+      }
+    </style>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal">Methadata.org <i>Beta</i></h5>
+<!--      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">Pricing</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="#">Sign up</a>-->
+    </div>
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="margin-bottom:50px;">
+      <p class="lead">Open Source database for contract metadata</p>
+      <p>Currently <b>{{token_count}}</b> tokens, across <b>6</b> networks.</p>
+    </div>
+
+
+
+
+    <div class="col-md-8 offset-2">
+</div>
+
+    <table class="col-md-8 offset-2">
+
+    {% for (fname,entity) in entities.items() %}
+    <tr>
+      <td valign=top>
+       {% if entity.logo and entity.logo.ipfs_hash %}
+          <img src="https://dweb.me/ipfs/{{entity.logo.ipfs_hash}}" class="logo" /><br>
+      {% endif %}
+
+    </td>
+    <td style="padding-left:10px; padding-bottom:30px">
+      <h4>{{entity.name}} {# <small><a href="http://localhost:8080/{{fname}}" class="text-muted">edit</a></small> #}</h4><br>
+      {% if entity.description %}
+        <i>{{entity.description}}</i><br>
+      {% endif %}
+      {% if entity.website %}
+        Website: <a href="{{entity.website}}">{{entity.website|truncate(100, True)}}</a><br>
+      {% endif %}
+
+      {% for site in entity.social %}
+        {% if entity.social[site] %}
+          {{site|title}}: <a href="{{entity.social[site]}}">{{entity.social[site]|truncate(60, True)}}</a><br>
+        {% endif %}
+      {% endfor %}
+      <br>
+
+      {% for address in entity.eth %}
+      <div style='box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important; margin-bottom:5px; border:1px solid rgba(0,0,0,.125); border-radius: .25rem; padding:5px' class="col-md-8">
+        {% if address.deprecation %}<span style="text-decoration: line-through;">{% endif %}
+          <h6>{% if address.deprecation %}Legacy {% endif %}{{address.name}} {% if address.erc20 %}({{address.erc20.symbol}}){% endif %}</h6>
+          {% if address.deprecation %}</span>{% endif %}
+
+          <small class="text-muted">{{address.address}}<br>
+          {% if address.url %} <a href="{{address.url}}" style="color:#212529; text-decoration:underlin">{{address.url}}</a><br> {% endif %}
+
+          {% if address.deprecation %}
+            <b>Deprecated</b><br>
+            Announcement: {{address.deprecation.announcement_url}}<br>
+            New Address: {{address.deprecation.new_address}}<br>
+          {% endif %}
+
+          {% if address.erc20 %}
+            <b>ERC-20 token</b><br>
+            {{address.erc20.name}} ({{address.erc20.symbol}})<br>
+            Decimals: {{address.erc20.decimals}}<br>
+          {% endif %}
+          {% if address.erc721 %}
+            <b>ERC-721 token</b><br>
+            Symbol: {{address.erc721.symbol}}<br>
+          {% endif %}
+
+
+          </small>
+      </div>
+      {% endfor %}
+    </td>
+{#    <td valign="top">
+       <b>ERC-20 token</b><br>
+       decimals: <b>{{token.decimals}}</b><br>
+       symbol: <b>{{token.symbol}}</b><br>
+       <br>
+             {% if token.logo.ipfs_hash %}
+      <img src="https://dweb.me/ipfs/{{token.logo.ipfs_hash}}" style="width:64px" /><br>
+      {% endif %}
+
+    </td>#}
+  </tr>
+{#
+      <tr>
+        <td valign=top>
+      <a href="https://github.com/ethereum-lists/mETHadata/edit/master/tokens/{{net}}/{{token.address}}.json">edit</a>
+      {% if token.merge %}<b><a href="http://localhost:8080/{{token.host}}">MERGE</a></b>{% endif %}<br>
+      {{token.nice_name}}
+    </td>
+    <td style="padding-left:10px; padding-bottom:30px">
+      <b>{{token.name}} ({{token.symbol}})</b><br>
+      <a href="http://trivial.co/t/{{token.address}}">{{token.address}}</a><br>
+      <br>
+      {% if token.website %}
+        Website: <a href="{{token.website}}">{{token.website|truncate(100, True)}}</a><br>
+      {% endif %}
+
+      {% for site in token.social %}
+        {% if token.social[site] %}
+          {{site|title}}: <a href="{{token.social[site]}}">{{token.social[site]|truncate(60, True)}}</a><br>
+        {% endif %}
+      {% endfor %}
+    </td>
+    <td valign="top">
+       <b>ERC-20 token</b><br>
+       decimals: <b>{{token.decimals}}</b><br>
+       symbol: <b>{{token.symbol}}</b><br>
+       <br>
+             {% if token.logo.ipfs_hash %}
+      <img src="https://dweb.me/ipfs/{{token.logo.ipfs_hash}}" style="width:64px" /><br>
+      {% endif %}
+
+    </td>
+  </tr>#}
+  {%endfor%}
+</table>
+
+
+
+<!--
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          </div>
+        </div>
+      </div>
+    -->
+
+<!--
+      <footer class="pt-4 my-md-5 pt-md-5 border-top" >
+        <div class="row">
+          <div class="col-6 offset-7 col-md">
+            <h5>Users</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">WallETH</a></li>              
+              <li><a class="text-muted" href="#">Trivial.co</a></li>
+              <li><a class="text-muted" href="#">MyCrypto</a></li>
+              <li><a class="text-muted" href="#">Trezor</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Similar</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">4byte.directory</a></li>
+              <li><a class="text-muted" href="#">Address Whitelist</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Github Repo</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+  </body>
+</html>
+
+
+

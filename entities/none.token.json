@@ -1,0 +1,49 @@
+{
+  "name": "None",
+  "support": {
+    "email": "ligi@ethereum.org"
+  },
+  "website": "",
+  "social": {
+    "github": "https://github.com/walleth/contracts/tree/master/NoneToken"
+  },
+  "logo": {
+    "src": "",
+    "width": "",
+    "height": "",
+    "sources": {}
+  },
+  "eth": [
+    {
+      "name": "None",
+      "address": "0x643B6870beabee941B9260a0A878bcF4A61Fb0f1",
+      "erc20": {
+        "symbol": "NONE",
+        "decimals": 0,
+        "name": "None"
+      }
+    }
+  ],
+  "rin": [
+    {
+      "name": "None",
+      "address": "0x6475A7FA6Ed2D5180F0e0a07c2d951D12C0EDB91",
+      "erc20": {
+        "symbol": "NONE",
+        "decimals": 0,
+        "name": "None"
+      }
+    }
+  ],
+  "rop": [
+    {
+      "name": "None",
+      "address": "0xFD5a69A1309595FF5121553F52C8A5B2B1B31031",
+      "erc20": {
+        "symbol": "NONE",
+        "decimals": 0,
+        "name": "None"
+      }
+    }
+  ]
+}

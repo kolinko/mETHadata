@@ -1,0 +1,41 @@
+{
+  "name": "CEFS",
+  "ens_address": "",
+  "website": "https://www.cryptopiashares.com",
+  "logo": {
+    "src": "",
+    "width": "",
+    "height": "",
+    "ipfs_hash": ""
+  },
+  "support": {
+    "email": "",
+    "url": ""
+  },
+  "social": {
+    "blog": "",
+    "chat": "",
+    "facebook": "",
+    "forum": "",
+    "github": "",
+    "gitter": "",
+    "instagram": "",
+    "linkedin": "",
+    "reddit": "",
+    "slack": "",
+    "telegram": "",
+    "twitter": "",
+    "youtube": ""
+  },
+  "ubq": [
+    {
+      "name": "CEFS",
+      "address": "0x08533D6A06CE365298b12Ef92eb407cBA8Aa8273",
+      "erc20": {
+        "symbol": "CEFS",
+        "decimals": 8,
+        "name": "CEFS"
+      }
+    }
+  ]
+}

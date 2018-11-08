@@ -1,0 +1,40 @@
+{
+  "name": "BitEther",
+  "website": "",
+  "logo": {
+    "src": "",
+    "width": "",
+    "height": "",
+    "ipfs_hash": ""
+  },
+  "support": {
+    "email": "",
+    "url": ""
+  },
+  "social": {
+    "blog": "https://medium.com/@splix/bitether-coin-on-ethereum-classic-b17c7034dcb6",
+    "chat": "",
+    "facebook": "",
+    "forum": "",
+    "github": "https://github.com/splix/bec",
+    "gitter": "",
+    "instagram": "",
+    "linkedin": "",
+    "reddit": "",
+    "slack": "",
+    "telegram": "",
+    "twitter": "",
+    "youtube": ""
+  },
+  "etc": [
+    {
+      "name": "BitEther",
+      "address": "0x085fb4f24031EAedbC2B611AA528f22343eB52Db",
+      "erc20": {
+        "symbol": "BEC",
+        "decimals": 8,
+        "name": "BitEther"
+      }
+    }
+  ]
+}

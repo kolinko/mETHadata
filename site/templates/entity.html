@@ -1,0 +1,207 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Open Source database for contract metadata">
+
+    <title>Methadata - Open Source database for contract metadata</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal">Methadata.org <i>Beta</i></h5>
+    </div>
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="margin-bottom:20px;">
+      <p class="lead">Open Source database for contract metadata</p>
+      <p>Currently <b>1208</b> tokens, across <b>6</b> networks.</p>
+    </div>
+
+    <div class="col-md-8 offset-2" id="app">
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Organisation:</h3>
+
+    <table style="width:100%">
+      <tr>
+        <td style="width:130px">Name:</td><td><input v-model="e.name"></td>
+      </tr>
+
+      <tr>
+        <td>Website:</td><td><input style="width:100%" v-model="e.website"></td>
+      </tr>
+
+      <tr>
+        <td>Description:</td><td><input style="width:100%" v-model="e.description"></td>
+      </tr>
+
+      <tr>
+        <td>Logo link:</td><td><input style="width:100%" v-model="e.logo.origin"></td>
+      </tr>
+
+      <tr>
+        <td>Support e-mail:</td><td><input placeholder="email@example.com" v-model="e.support.email"></td>
+      </tr>
+
+      <tr>
+        <td>Whitepaper:</td><td><input placeholder="https://example.com/whitepaper.pdf" 
+                                  style="width:100%" name="e.whitepaper" v-model="e.whitepaper"></td>
+      </tr>
+
+    </table>
+
+    <hr>
+    <h3>Addresses</h3>
+      <table>
+        <tr v-for="(a, i) in e.eth"><td data="address">
+          <input name="name" placeholder="name e.g. Token, Contract, Creator" style="width:100px" v-model="a.name">
+          <input name="address" style="width:400px" placeholder="0xfe9e6111e...." v-model="a.address"><br>
+
+          <div class="btn-group" role="group" aria-label="Network">
+            <button type="button" eth class="btn btn-sm btn-secondary">Ethereum</button>
+            <button type="button" poa class="btn btn-sm btn-light">POA</button>
+            <button type="button" kov class="btn btn-sm btn-light">Kovan</button>
+            <button type="button" rop class="btn btn-sm btn-light">Ropstein</button>
+            <button type="button" ubq class="btn btn-sm btn-light">UBQ</button>
+            <button type="button" rin class="btn btn-sm btn-light">Rinkeby</button>
+            <button type="button" ubq class="btn btn-sm btn-light">Ubq</button>
+            <button type="button" etc class="btn btn-sm btn-light">Classic</button>
+          </div>
+            
+            <input style="width:100%" placeholder="explain how you know or provide announcement url http://...." 
+                    name="url" v-model="a.url"><br>
+
+            
+            <div class="btn-group" role="group" aria-label="Attrs">            
+              <button type="button" erc20 class="btn btn-sm" v-bind:class="test(a,'erc20')" v-on:click="toggle(a, 'erc20')">ERC-20</button>
+
+              <button type="button" erc721 class="btn btn-sm" v-bind:class="test(a,'erc721')" v-on:click="toggle(a, 'erc721')">ERC-721</button>
+              <button type="button" exchange class="btn btn-sm" v-bind:class="testStr(a,'name','exchange')">Exchange</button>
+              <button type="button" donation class="btn btn-sm" v-bind:class="testStr(a,'name','donation')">Donation</button>
+              <button type="button" deprecated class="btn btn-sm" v-bind:class="test(a,'deprecation')"  v-on:click="toggle(a, 'deprecation')">Deprecated</button>
+
+            </div>
+
+            <div v-if="a.deprecation">
+              Announcement url:<br>
+              <input style="width:100%" placeholder="new address, 0x...." 
+                       v-model="a.deprecation.announcement_url"><br>
+
+
+              New address:<br>
+              <input style="width:100%" placeholder="new address, 0x...." 
+                       v-model="a.deprecation.new_address"><br>
+            </div>
+
+            <div v-if="a.erc20">
+              Symbol: <input v-model="a.erc20.symbol"></span><br>
+              Decimals: <input v-model="a.erc20.decimals"></span><br>
+              Name: <input v-model="a.erc20.name"></span><br>
+            </div>
+
+            <div v-if="a.erc721">
+              Symbol: <input v-model="a.erc721.symbol"></span><br>
+            </div>
+
+
+          <hr>
+        </td></tr>
+
+    </table>
+
+      <br>
+
+
+  </div>
+  <div class="col-md-4">
+    <h3>Social media:</h3>
+      <table>
+        {% for social in ['blog', 'chat', 'facebook', 'forum', 'github', 'gitter', 
+                          'instagram', 'linkedin', 'reddit', 'slack', 'telegram',
+                          'twitter','youtube'] %}
+          <tr>
+            <td align="right" style="padding-right:10px">{{social}}</td>
+            <td><input v-model="e.social.{{social}}" placeholder="{{social}}" style="width:350px"></td>
+          </tr>
+        {% endfor %}
+      </table>
+      <br>
+      <br>
+      <button type="button" class="btn btn-lg btn-success" style="margin-left:30px" v-on:click="save()">Save &raquo;</button>
+
+    </div>
+</div>
+<div class="col-md-4">
+    <hr>
+
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+  <script>
+    var app = new Vue({
+          el: "#app",
+          methods: {
+            save: function() {
+              this.$http.post('/save', this.$root.$data).then(
+                  response => {
+                      console.log(response)
+
+                  }, response => {
+                      console.log(response)
+
+                  }
+                )
+            },
+
+            test: function(a, attr) {return a[attr]?"btn-secondary":"btn-light";},
+            testStr: function(a, attr, str) {return (a[attr]==str)?"btn-secondary":"btn-light";},
+            toggle: function(a, attr) {
+              console.log('toggle'+a+attr)
+              if (a[attr]) {
+                  delete a[attr]
+              } else {
+                console.log('hello')
+                a[attr] = {'hello':'hello'};
+              }
+                this.$forceUpdate();
+           }
+          },
+          data: {
+            fname: '{{fname}}',
+            e: {{data}}
+          }
+
+          }
+        );
+
+  </script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+
+
+
