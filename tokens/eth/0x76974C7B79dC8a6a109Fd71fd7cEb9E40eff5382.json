@@ -1,0 +1,33 @@
+{
+  "symbol": "DOW",
+  "address": "0x76974C7B79dC8a6a109Fd71fd7cEb9E40eff5382",
+  "decimals": 18,
+  "name": "DOW",
+  "ens_address": "",
+  "website": "https://dowcoin.io/",
+  "logo": {
+    "src": "",
+    "width": "",
+    "height": "",
+    "ipfs_hash": ""
+  },
+  "support": {
+    "email": "dowcoin@gmail.com",
+    "url": ""
+  },
+  "social": {
+    "blog": "https://medium.com/@dowcoin",
+    "chat": "",
+    "facebook": "https://www.facebook.com/dowcoin/",
+    "forum": "https://bitcointalk.org/index.php?topic=3279944",
+    "github": "https://github.com/dowtoken",
+    "gitter": "",
+    "instagram": "https://www.instagram.com/dowcoin/",
+    "linkedin": "https://www.linkedin.com/in/dowcoin-dow-blockchain-technology-8ba2b6167/",
+    "reddit": "https://www.reddit.com/user/dowcoin/",
+    "slack": "",
+    "telegram": "https://t.me/dowcoin",
+    "twitter": "https://twitter.com/dowcoin",
+    "youtube": "https://www.youtube.com/channel/UCGKi3bk5x9K5qnsZgSMUeSg"
+  }
+}
